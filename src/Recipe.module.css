@@ -1,0 +1,55 @@
+.recipeCard {
+    color: aliceblue;
+    background-image: linear-gradient(339deg, #590a9859 0%, #d57eeb 80%);
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    border-radius: 20px;
+    display: grid;
+    grid-template-rows: 1fr 0.5fr 0.5fr 0.5fr;
+    grid-template-columns: 1fr 3fr;
+    column-gap: 10px;
+    align-items: center;
+    text-align: left;
+    text-decoration: none;
+    box-shadow: 0px 0px 10px 0px #ad78d199, inset 1px -2px 5px -1px #0d0c0e99;
+}
+
+.recipeCard img {
+    grid-row: 1/ 5;
+    grid-column: 1;
+    height: 200px;
+    width: 200px;
+    border-radius: 30px;
+    padding: 20px;
+}
+
+.recipeCard h1 {
+    font-size: 32px;
+    padding: 0;
+    margin: 10px 0px 0px 0px;
+}
+
+.recipeCard p {
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+}
+
+.recipeCard ol {
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    font-size: 14px;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+
+.recipeCard li {
+    padding: 5px 10px;
+    background: linear-gradient(182deg, #c781f7b3, #af52ee);
+    border-radius: 50px;
+    margin-right: 10px;
+    font-style: italic;
+    box-shadow: 0px 0px 10px 0px #ad78d199, inset 1px -2px 4px 0px #0d0c0e99;
+}
