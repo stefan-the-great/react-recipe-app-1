@@ -1,15 +1,13 @@
 import React,{useEffect, useState} from 'react';
-import Recipe from './Recipe';
 import './App.css';
+import Recipe from './components/Recipe';
+import Header from './components/Header';
+import Search from './components/Search';
 
 const App = () => {
 
   const APP_ID = 'd20946cf';
   const APP_KEY = 'bf0fbbbc7230ee42fae6feb291a872af';
-
-  // Filters
-  const diets = ['balanced','high-fiber','high-protein','low-carb','low-fat','low-sodium'];
-  const healths = ['alcohol-free','immuno-supportive','celery-free','crustacean-free','dairy-free','egg-free','fish-free','fodmap-free','gluten-free','keto-friendly','kidney-friendly','kosher','low-potassium','lupine-free','mustard-free','low-fat-abs','No-oil-added','low-sugar','paleo','peanut-free','pecatarian','pork-free','red-meat-free','sesame-free','shellfish-free','soy-free','sugar-conscious','tree-nut-free','vegan','vegetarian','wheat-free']
 
   // const [loading, setLoading] = useState(true);
   const [recipes, setRecipes] = useState([]);
@@ -56,46 +54,12 @@ const App = () => {
     // }
   }
 
-  const updateSearch = e => {
-    setSearch(e.target.value);
-  }
-
-  const getSearch = e => {
-    e.preventDefault();
-    setQuery(search);
-    setSearch('');
-  }
-
   return (
     <div className="App">
-      <form className="search-form" onSubmit={getSearch}>
-        <div className="seach-area">
-          <input className="search-bar" type="text" value={search} onChange={updateSearch} placeholder="Search for a Recipe..." />
-          <button className="search-button" type="submit" >Search</button>
-        </div>
-        <br />
+      <Header />
+      <Search search={search} setSearch={setSearch} setQuery={setQuery}diet={diet} setDiet={setDiet} health={health} setHealth={setHealth} />
 
-        <div className="search-filters">
-          {/* Diet Filter */}
-          <select id="filter-diet" value={diet} onChange={e=>setDiet(e.target.value)} >
-            <option value="">Select Diet</option>
-            {diets.map(dietItem => (
-                  <option>{dietItem}</option>
-            ))}
-          </select>
-
-          {/* Health Filter */}
-          <select value={health} onChange={e=>setHealth(e.target.value)} >
-            <option value="">Select Health</option>
-            {healths.map(healthItem => (
-                  <option>{healthItem}</option>
-            ))}
-          </select>
-        </div>
-
-
-      </form>
-
+      {recipes.length > 0 ?  <p id='recipe-count'>{recipes.length} Recipes Shown</p> : ""}
       <div className="recipe-cards">
         {resultStatus ? 
           recipes.map(recipe => (
@@ -110,7 +74,14 @@ const App = () => {
               source={recipe.recipe.source}
               url={recipe.recipe.url} />
           ))  : 
-          <p id='no-result'>Sorry Nothing Came UP :(</p>
+          <div id='no-result'>
+            <h3>
+              Sorry... Nothing came up!
+            </h3>
+            <h4>
+              Try searching for something else
+            </h4>
+          </div>
         }
       </div>
     </div>
